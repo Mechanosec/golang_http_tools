@@ -83,3 +83,8 @@ func ShowError(err error, message string, w http.ResponseWriter) {
 	}
 	w.Write(msg)
 }
+
+func GetHttpError(data io.Reader) error {
+	body, _ := ioutil.ReadAll(data)
+	return errors.New(string(body))
+}
