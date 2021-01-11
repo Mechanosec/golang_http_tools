@@ -11,8 +11,8 @@ import (
 	"strings"
 )
 
-func JsonDecode(data io.Reader) (map[string]string, error) {
-	var responseData map[string]string
+func JsonDecode(data io.Reader) (map[string]interface{}, error) {
+	var responseData map[string]interface{}
 
 	body, _ := ioutil.ReadAll(data)
 	err := json.Unmarshal(body, &responseData)
@@ -29,7 +29,7 @@ func JsonDecodeArray(data io.Reader) ([]map[string]interface{}, error) {
 	return responseData, err
 }
 
-func CheckRequiredParams(data map[string]string, filter []string) error {
+func CheckRequiredParams(data map[string]interface{}, filter []string) error {
 	var missingParams []string
 	for _, filterKey := range filter {
 		if strings.Contains(filterKey, "|") {
