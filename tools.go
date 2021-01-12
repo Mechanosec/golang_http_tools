@@ -60,8 +60,8 @@ func CheckRequiredParams(data map[string]interface{}, filter []string) error {
 	return nil
 }
 
-func ConvertMap(arr map[string][]string) map[string]string {
-	data := make(map[string]string)
+func ConvertMap(arr map[string][]string) map[string]interface{} {
+	data := make(map[string]interface{})
 	if arr != nil {
 		for key, val := range arr {
 			data[key] = val[0]
