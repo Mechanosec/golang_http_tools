@@ -14,8 +14,9 @@ import (
 func JsonDecode(data io.Reader) (map[string]interface{}, error) {
 	var responseData map[string]interface{}
 
-	body, _ := ioutil.ReadAll(data)
-	err := json.Unmarshal(body, &responseData)
+	dec := json.NewDecoder(data)
+	dec.UseNumber()
+	err := dec.Decode(&data)
 
 	return responseData, err
 }
