@@ -16,7 +16,7 @@ func JsonDecode(data io.Reader) (map[string]interface{}, error) {
 
 	dec := json.NewDecoder(data)
 	dec.UseNumber()
-	err := dec.Decode(&data)
+	err := dec.Decode(&responseData)
 
 	return responseData, err
 }
@@ -26,7 +26,7 @@ func JsonDecodeArray(data io.Reader) ([]map[string]interface{}, error) {
 
 	dec := json.NewDecoder(data)
 	dec.UseNumber()
-	err := dec.Decode(&data)
+	err := dec.Decode(&responseData)
 
 	return responseData, err
 }
