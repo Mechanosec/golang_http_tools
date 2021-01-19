@@ -77,9 +77,7 @@ func ShowError(err error, message string, w http.ResponseWriter) {
 	w.WriteHeader(http.StatusForbidden)
 	w.Header().Set("Content-Type", "application/json")
 
-	msg, err := json.Marshal(map[string]string{
-		"error": fmt.Sprintf("%s: %s", message, err.Error()),
-	})
+	msg, err := json.Marshal(fmt.Sprintf("%s: %s", message, err.Error()))
 	if err != nil {
 		return
 	}
