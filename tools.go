@@ -77,7 +77,14 @@ func ShowError(err error, message string, w http.ResponseWriter) {
 	w.WriteHeader(http.StatusForbidden)
 	w.Header().Set("Content-Type", "application/json")
 
-	msg, err := json.Marshal(fmt.Sprintf("%s: %s", message, err.Error()))
+	var tmpMsg = err.Error()
+	if len(tmpMsg) > 0 && tmpMsg[0] == '"' {
+		tmpMsg = tmpMsg[1:]
+	}
+	if len(tmpMsg) > 0 && tmpMsg[len(tmpMsg)-1] == '"' {
+		tmpMsg = tmpMsg[:len(tmpMsg)-1]
+	}
+	msg, err := json.Marshal(fmt.Sprintf("%s: %s", message, tmpMsg))
 	if err != nil {
 		return
 	}
