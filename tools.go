@@ -38,8 +38,8 @@ func CheckRequiredParams(data map[string]interface{}, filter []string) error {
 			dependParams := strings.Split(filterKey, "|")
 			found := false
 			for _, dependParamsKey := range dependParams {
-				value, ok := data[dependParamsKey]
-				if ok || value != "" {
+				_, ok := data[dependParamsKey]
+				if ok {
 					found = true
 					break
 				}
@@ -48,8 +48,8 @@ func CheckRequiredParams(data map[string]interface{}, filter []string) error {
 				missingParams = append(missingParams, filterKey)
 			}
 		} else {
-			value, ok := data[filterKey]
-			if !ok || value == "" {
+			_, ok := data[filterKey]
+			if !ok {
 				missingParams = append(missingParams, filterKey)
 			}
 		}
