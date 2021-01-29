@@ -49,7 +49,7 @@ func CheckRequiredParams(data map[string]interface{}, filter []string) error {
 			}
 		} else {
 			val, ok := data[filterKey]
-			if !ok && val != nil {
+			if !ok && val == nil {
 				missingParams = append(missingParams, filterKey)
 			}
 		}
